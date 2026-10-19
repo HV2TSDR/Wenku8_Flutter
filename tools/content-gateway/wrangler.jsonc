@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "wenku8-public",
+  "main": "index.mjs",
+  "compatibility_date": "2026-10-17",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "app.3952039.xyz", "custom_domain": true }],
+  "durable_objects": { "bindings": [{ "name": "PUBLIC_BUDGET", "class_name": "PublicBudget" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["PublicBudget"] }],
+  "ratelimits": [{ "name": "PUBLIC_LIMITER", "namespace_id": "395203903", "simple": { "limit": 90, "period": 60 } }],
+  "observability": { "enabled": false }
+}

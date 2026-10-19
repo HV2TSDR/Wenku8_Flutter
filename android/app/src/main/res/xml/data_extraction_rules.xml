@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="wenku8-offline-v1" />
+        <exclude domain="file" path="wenku8-illustrations-v1" />
+        <exclude domain="sharedpref" path="wenku_account_session.xml" />
+        <exclude domain="sharedpref" path="wenku_web_session.xml" />
+        <exclude domain="sharedpref" path="book_scan_folders.xml" />
+        <exclude domain="sharedpref" path="cloud_sources_secure.xml" />
+        <exclude domain="sharedpref" path="custom_speech_secure.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="file" path="wenku8-offline-v1" />
+        <exclude domain="file" path="wenku8-illustrations-v1" />
+        <exclude domain="sharedpref" path="wenku_account_session.xml" />
+        <exclude domain="sharedpref" path="wenku_web_session.xml" />
+        <exclude domain="sharedpref" path="book_scan_folders.xml" />
+        <exclude domain="sharedpref" path="cloud_sources_secure.xml" />
+        <exclude domain="sharedpref" path="custom_speech_secure.xml" />
+    </device-transfer>
+</data-extraction-rules>

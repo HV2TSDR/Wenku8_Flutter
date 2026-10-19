@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.18)
+project(wenku_book_import C)
+
+set(USE_ENCRYPTION OFF CACHE BOOL "" FORCE)
+set(USE_LIBXML2 OFF CACHE BOOL "" FORCE)
+set(USE_XMLWRITER ON CACHE BOOL "" FORCE)
+set(USE_ZLIB ON CACHE BOOL "" FORCE)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+set(LIBMOBI_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../../../../third_party/libmobi")
+add_subdirectory("${LIBMOBI_ROOT}" "${CMAKE_CURRENT_BINARY_DIR}/libmobi" EXCLUDE_FROM_ALL)
+
+if(ANDROID)
+  # Android packages unversioned .so files; keep DT_NEEDED consistent with APK names.
+  set_target_properties(mobi PROPERTIES VERSION "" SOVERSION "")
+  add_library(wenku_mobi SHARED mobi_export.c mobi_jni.c)
+  target_link_options(mobi PRIVATE "-Wl,-z,max-page-size=16384")
+  target_link_options(wenku_mobi PRIVATE "-Wl,-z,max-page-size=16384")
+else()
+  add_executable(wenku_mobi mobi_export.c)
+  target_compile_definitions(wenku_mobi PRIVATE WENKU_MOBI_CLI)
+endif()
+target_include_directories(wenku_mobi PRIVATE "${LIBMOBI_ROOT}/src")
+target_link_libraries(wenku_mobi PRIVATE mobi)
